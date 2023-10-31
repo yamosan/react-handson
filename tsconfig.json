@@ -1,3 +1,7 @@
 {
-  "extends": "@tsconfig/node20"
+  "extends": "@tsconfig/node20",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  }
 }
