@@ -1,17 +1,9 @@
 import { FC } from "react";
 import { User } from "./service";
+import { useLoaderData } from "./LoaderDataProvider";
 
-type Props = {
-  hydrationData?: User;
-};
-
-function isBrowser() {
-  return typeof window !== "undefined";
-}
-
-export const App: FC<Props> = ({ hydrationData }) => {
-  // @ts-ignore
-  const user: User = isBrowser() ? window.____hydrationData : hydrationData;
+export const App: FC = () => {
+  const { data: user } = useLoaderData<User>();
 
   return (
     <div>
