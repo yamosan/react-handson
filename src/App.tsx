@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { FC } from "react";
+import { User } from "./service";
 
-export const App = () => {
-  const [count, setCount] = useState(0);
+type Props = {
+  hydrationData?: User;
+};
+
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+
+export const App: FC<Props> = ({ hydrationData }) => {
+  // @ts-ignore
+  const user: User = isBrowser() ? window.____hydrationData : hydrationData;
 
   return (
-    <>
-      <p>
-        count: <span>{count}</span>
-      </p>
-      <button onClick={() => setCount((prev) => prev + 1)}>+1</button>
-      <button onClick={() => setCount((prev) => prev - 1)}>-1</button>
-    </>
+    <div>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+    </div>
   );
 };
